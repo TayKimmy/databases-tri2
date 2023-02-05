@@ -75,7 +75,7 @@ def countCars():
     return len(cars_data)
 
 if __name__ == "__main__": 
-    initCars() 
+    initRankings() 
     
     best = favoriteCar()
     print("Most liked", best['like'])
