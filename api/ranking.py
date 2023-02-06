@@ -53,7 +53,7 @@ class RankingAPI:
     api.add_resource(_UpdateDislike, '/dislike/<int:id>')
     
 if __name__ == "__main__": 
-    server = "http://172.21.215.122:8086" # run local
+    server = "http://zesty.nighthawkcodingsociety.com" # run local
     url = server + "/api/rankings"
     responses = []  # responses list
 
