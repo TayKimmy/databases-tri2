@@ -10,6 +10,7 @@ from model.users import initUsers
 from model.rankings import initRankings
 from model.generaters import initfact
 from model.facts import initFacts
+from model.schemas import initSchemas
 
 # setup APIs
 from api.covid import covid_api # Blueprint import api definition
@@ -18,6 +19,7 @@ from api.user import user_api # Blueprint import api definition
 from api.ranking import ranking_api
 from api.generate import generate_api
 from api.fact import fact_api
+from api.schema import schema_api
 
 # setup App pages
 from projects.projects import app_projects # Blueprint directory import projects definition
@@ -30,6 +32,7 @@ app.register_blueprint(app_projects) # register app pages
 app.register_blueprint(ranking_api)
 app.register_blueprint(generate_api)
 app.register_blueprint(fact_api)
+app.register_blueprint(schema_api)
 
 @app.errorhandler(404)  # catch for URL not found
 def page_not_found(e):
@@ -51,6 +54,7 @@ def activate_job():
     initRankings()
     initfact()
     initFacts()
+    initSchemas()
 
 # this runs the application on the development server
 if __name__ == "__main__":
