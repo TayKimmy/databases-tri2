@@ -14,7 +14,6 @@ class Facts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     _car = db.Column(db.String(255), unique=False, nullable=False)
     _industry = db.Column(db.String(255), unique=False, nullable=False)
-    _knew = db.Column(db.String(255), unique = False, nullable = False)
     # Defines a relationship between User record and Notes table, one-to-many (one user to many notes)
     # constructor of a User object, initializes the instance variables within object (self)
     def __init__(self, car, industry):
@@ -88,11 +87,11 @@ def initFacts():
     """Create database and tables"""
     db.create_all()
     """Tester data for table"""
-    u1 = Facts( industry='Thomas Edison', car='Tesla Model y', )
-    u2 = Facts( industry='Nicholas Tesla', car='Pagani', )
-    u3 = Facts( industry='Alexander Graham Bell', car='Ferrari', )
-    u4 = Facts( industry='Eli Whitney', car='Lexus', )
-    u5 = Facts( industry='John Mortensen', car='NIO', )
+    u1 = Facts( industry='Thomas Edison', car='Tesla Model y' )
+    u2 = Facts( industry='Nicholas Tesla', car='Pagani' )
+    u3 = Facts( industry='Alexander Graham Bell', car='Ferrari' )
+    u4 = Facts( industry='Eli Whitney', car='Lexus' )
+    u5 = Facts( industry='John Mortensen', car='NIO' )
 
     facts = [u1, u2, u3, u4, u5]
 
