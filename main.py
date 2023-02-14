@@ -12,6 +12,7 @@ from model.generaters import initfact
 from model.facts import initFacts
 from model.schemas import initSchemas
 from model.carbuilderapi import initcarbuilder
+from model.leaderboards import initleaderboard
 
 # setup APIs
 from api.covid import covid_api # Blueprint import api definition
@@ -22,6 +23,7 @@ from api.generate import generate_api
 from api.fact import fact_api
 from api.schema import schema_api
 from api.carbuild import build_api
+from api.leaderboard import leaderboard_api
 
 # setup App pages
 from projects.projects import app_projects # Blueprint directory import projects definition
@@ -32,6 +34,7 @@ app.register_blueprint(covid_api) # register api routes
 app.register_blueprint(user_api) # register api routes
 app.register_blueprint(ranking_api)
 app.register_blueprint(generate_api)
+app.register_blueprint(leaderboard_api)
 app.register_blueprint(fact_api)
 app.register_blueprint(schema_api)
 app.register_blueprint(build_api)
@@ -60,6 +63,7 @@ def activate_job():
     initFacts()
     initSchemas()
     initcarbuilder()
+    initleaderboard()
 
 # this runs the application on the development server
 if __name__ == "__main__":

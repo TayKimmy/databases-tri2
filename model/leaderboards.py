@@ -9,6 +9,13 @@ leaderboard_list = [
     {"user": "Adi", "Score": "100"},
 ]
 
+def initleaderboard():
+    # setup jokes into a dictionary with id, joke, haha, boohoo
+    item_id = 0
+    for item in leaderboard_list:
+        leaderboard_data.append({"id": item_id, "results": item})
+        item_id += 1
+
 def addScore(user, score):
     leaderboard_data.append({"user": user, "score": score})
     leaderboard_data.sort(key=lambda x: x["score"], reverse=True)
