@@ -23,9 +23,6 @@ class SchemasAPI:
             like = body.get('like')
             if like is None:
                 return {'message': f'Number of likes are missing, or is less than 2 characters'}, 210
-            dislike = body.get('dislike')
-            if dislike is None < 2:
-                return {'message': f'Number of dislikes are missing, or is less than 2 characters'}, 210
             id = body.get('id')
             if id is None :
                 return {'message': f'User ID is missing, or is less than 2 characters'}, 210
@@ -33,7 +30,7 @@ class SchemasAPI:
 
             ''' #1: Key code block, setup USER OBJECT '''
             uo = Schemas(car=car,like=like, 
-                       id=id, dislike=dislike)
+                       id=id)
             
             ''' Additional garbage error checking '''
             
@@ -51,7 +48,28 @@ class SchemasAPI:
             schemas = Schemas.query.all()    # read/extract all users from database
             json_ready = [schema.read() for schema in schemas]  # prepare output in json
             return jsonify(json_ready)  # jsonify creates Flask response object, more specific to APIs than json.dumps
+    
+    class _Delete(Resource):
+        def delete(self):
+            body = request.get_json()
+            id = body.get('id')
+            uo = Schemas(id=id)
+            schema = uo.delete()
+            if schema:
+                return jsonify(schema.read())
+    
+    class _Update(Resource):
+        def patch(self):
+            body = request.get_json()
+            id = body.get('id')
+            like = body.get('like')
+            uo = Schemas(id=id, like=like)
+            schema = uo.update()
+            if schema:
+                return jsonify(schema.read())
 
     # building RESTapi endpoint
     api.add_resource(_Create, '/create')
     api.add_resource(_Read, '/')
+    api.add_resource(_Delete, 'delete')
+    api.add_resource(_Update, '/update')

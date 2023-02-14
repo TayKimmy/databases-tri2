@@ -13,14 +13,12 @@ class Schemas(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     _car = db.Column(db.String(255), unique=False, nullable=False)
     _like = db.Column(db.Integer, unique=False, nullable=False)
-    _dislike = db.Column(db.Integer, unique = False, nullable = False)
     # Defines a relationship between User record and Notes table, one-to-many (one user to many notes)
     # constructor of a User object, initializes the instance variables within object (self)
-    def __init__(self, like, car, id, dislike):
+    def __init__(self, like, car, id):
         self.id = id
         self._car = car
         self._like = like   
-        self._dislike = dislike
 
     @property
     def like(self):
@@ -30,15 +28,6 @@ class Schemas(db.Model):
     @like.setter
     def like(self, like):
         self._like = like
-
-    @property
-    def dislike(self):
-        return self._dislike
-    
-    # a setter function, allows name to be updated after initial object creation
-    @dislike.setter
-    def dislike(self, dislike):
-        self._dislike = dislike
 
     @property
     def car(self):
@@ -69,19 +58,16 @@ class Schemas(db.Model):
             "id": self.id,
             "like": self.like,
             "car": self.car,
-            "dislike": self.dislike,
         }
 
     # CRUD update: updates user name, password, phone
     # returns self
-    def update(self, car="", like="", dislike=""):
+    def update(self, car="", like="",):
         """only updates values with length"""
         if len(car) > 0:
             self.car = car
         if len(like) > 0:
             self.like = like
-        if len(dislike) > 0:
-            self.dislike = dislike
         db.session.commit()
         return self
 
@@ -98,11 +84,11 @@ def initSchemas():
         """Create database and tables"""
         db.init_app(app)
         db.create_all()
-        u1 = Schemas(id = 1, car='Tesla Model Y', like = 0, dislike = 0)
-        u2 = Schemas(id = 2, car='NIO ET7', like = 0, dislike = 0)
-        u3 = Schemas(id = 3, car='Rivian R1S', like = 0, dislike = 0)
-        u4 = Schemas(id = 4, car='Lucid Air Grand Touring', like = 0, dislike = 0)
-        u5 = Schemas(id = 5, car='Tesla Roadster', like = 0, dislike = 0)
+        u1 = Schemas(id = 1, car='Tesla Model Y', like = 0)
+        u2 = Schemas(id = 2, car='NIO ET7', like = 0)
+        u3 = Schemas(id = 3, car='Rivian R1S', like = 0)
+        u4 = Schemas(id = 4, car='Lucid Air Grand Touring', like = 0)
+        u5 = Schemas(id = 5, car='Tesla Roadster', like = 0)
 
         schemas = [u1, u2, u3, u4, u5]
 
