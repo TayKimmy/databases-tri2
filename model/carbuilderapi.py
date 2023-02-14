@@ -1,38 +1,38 @@
-## Rohan's API for the Custom Car Builder (BACKEND)
+## Rohan's API for the custom car Builder (BAcKEND)
 import json
 
 carbuilder_data = []
 carbuilder_list = [
-    {"Car": "Rivian R1S", "Range": "300 miles", "Seating": "7 people", "0-60": "3 Seconds", "Price": "$78,000"},
-    {"Car": "Rivian R1T", "Range": "300 miles", "Seating": "7 people", "0-60": "3 Seconds", "Price": "$73,000"},
-    {"Car": "Tesla Model S", "Range": "400 miles", "Seating": "5 people", "0-60": "2 Seconds", "Price": "$95,000"},
-    {"Car": "Tesla Model 3", "Range": "300 miles", "Seating": "5 people", "0-60": "3 Seconds", "Price": "$43,000"},
-    {"Car": "Tesla Model X", "Range": "350 miles", "Seating": "6 people", "0-60": "4 Seconds", "Price": "$110,000"},
-    {"Car": "Tesla Model Y", "Range": "300 miles", "Seating": "5 people", "0-60": "3.5 Seconds", "Price": "$52,000"},
-    {"Car": "Tesla Semi", "Range": "500 miles", "Seating": "1 people", "0-60": "20 Seconds", "Price": "$150,000"},
-    {"Car": "Rivian R1S", "Range": "300 miles", "Seating": "7 people", "0-60": "3 Seconds", "Price": "$78,000"},
-    {"Car": "Rivian R1S", "Range": "300 miles", "Seating": "7 people", "0-60": "3 Seconds", "Price": "$78,000"},
-    {"Car": "Rivian R1S", "Range": "300 miles", "Seating": "7 people", "0-60": "3 Seconds", "Price": "$78,000"},
-    {"Car": "Rivian R1S", "Range": "300 miles", "Seating": "7 people", "0-60": "3 Seconds", "Price": "$78,000"},
-    {"Car": "Rivian R1S", "Range": "300 miles", "Seating": "7 people", "0-60": "3 Seconds", "Price": "$78,000"},
-    {"Car": "Rivian R1S", "Range": "300 miles", "Seating": "7 people", "0-60": "3 Seconds", "Price": "$78,000"},
-    {"Car": "Rivian R1S", "Range": "300 miles", "Seating": "7 people", "0-60": "3 Seconds", "Price": "$78,000"},
-    {"Car": "Rivian R1S", "Range": "300 miles", "Seating": "7 people", "0-60": "3 Seconds", "Price": "$78,000"},
-    {"Car": "Rivian R1S", "Range": "300 miles", "Seating": "7 people", "0-60": "3 Seconds", "Price": "$78,000"},
-    {"Car": "Rivian R1S", "Range": "300 miles", "Seating": "7 people", "0-60": "3 Seconds", "Price": "$78,000"},
-    {"Car": "Rivian R1S", "Range": "300 miles", "Seating": "7 people", "0-60": "3 Seconds", "Price": "$78,000"},
-    {"Car": "Rivian R1S", "Range": "300 miles", "Seating": "7 people", "0-60": "3 Seconds", "Price": "$78,000"},
-    {"Car": "Rivian R1S", "Range": "300 miles", "Seating": "7 people", "0-60": "3 Seconds", "Price": "$78,000"},
+    {"car": "Rivian R1S", "range": "300 miles", "seating": "7 people", "zero": "3 Seconds", "price": "$78,000"},
+    {"car": "Rivian R1T", "range": "300 miles", "seating": "7 people", "zero": "3 Seconds", "price": "$73,000"},
+    {"car": "Tesla Model S", "range": "400 miles", "seating": "5 people", "zero": "2 Seconds", "price": "$95,000"},
+    {"car": "Tesla Model 3", "range": "300 miles", "seating": "5 people", "zero": "3 Seconds", "price": "$43,000"},
+    {"car": "Tesla Model X", "range": "350 miles", "seating": "6 people", "zero": "4 Seconds", "price": "$110,000"},
+    {"car": "Tesla Model Y", "range": "300 miles", "seating": "5 people", "zero": "3.5 Seconds", "price": "$52,000"},
+    {"car": "Tesla Semi", "range": "500 miles", "seating": "1 people", "zero": "20 Seconds", "price": "$150,000"},
+    {"car": "Rivian R1S", "range": "300 miles", "seating": "7 people", "zero": "3 Seconds", "price": "$78,000"},
+    {"car": "Rivian R1S", "range": "300 miles", "seating": "7 people", "zero": "3 Seconds", "price": "$78,000"},
+    {"car": "Rivian R1S", "range": "300 miles", "seating": "7 people", "zero": "3 Seconds", "price": "$78,000"},
+    {"car": "Rivian R1S", "range": "300 miles", "seating": "7 people", "zero": "3 Seconds", "price": "$78,000"},
+    {"car": "Rivian R1S", "range": "300 miles", "seating": "7 people", "zero": "3 Seconds", "price": "$78,000"},
+    {"car": "Rivian R1S", "range": "300 miles", "seating": "7 people", "zero": "3 Seconds", "price": "$78,000"},
+    {"car": "Rivian R1S", "range": "300 miles", "seating": "7 people", "zero": "3 Seconds", "price": "$78,000"},
+    {"car": "Rivian R1S", "range": "300 miles", "seating": "7 people", "zero": "3 Seconds", "price": "$78,000"},
+    {"car": "Rivian R1S", "range": "300 miles", "seating": "7 people", "zero": "3 Seconds", "price": "$78,000"},
+    {"car": "Rivian R1S", "range": "300 miles", "seating": "7 peole", "zero": "3 Seconds", "price": "$78,000"},
+    {"car": "Rivian R1S", "range": "300 miles", "seating": "7 people", "zero": "3 Seconds", "price": "$78,000"},
+    {"car": "Rivian R1S", "range": "300 miles", "seating": "7 people", "zero": "3 Seconds", "price": "$78,000"},
+    {"car": "Rivian R1S", "range": "300 miles", "seating": "7 people", "zero": "3 Seconds", "price": "$78,000"},
 ]
 
-def initfact():
+def initcarbuilder():
     # setup jokes into a dictionary with id, joke, haha, boohoo
     item_id = 0
     for item in carbuilder_list:
-        carbuilder_dataappend({"id": item_id, "results": item})
+        carbuilder_data.append({"id": item_id, "results": item})
         item_id += 1
 
-def getfact():
+def getcarbuilder():
     return (carbuilder_data)
 
 def getfact_c():
@@ -49,9 +49,7 @@ def countcarbuilder():
 if __name__ == "__main__": 
     initfact()  # initialize jokes
 
-    # Random joke
-    print("Random fact")
-    printfact(getrandom())
     
-    # Count of Jokes
-    print("Jokes Count: " + str(countcarbuilder()))  
+    
+    # count of Jokes
+    print("Jokes count: " + str(countcarbuilder()))  
