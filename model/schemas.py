@@ -83,8 +83,8 @@ class Schemas(db.Model):
 def initSchemas():
     with app.app_context():
         """Create database and tables"""
-        db.init_app(app)
         db.create_all()
+        """Tester data for table"""
         u1 = Schemas(id = 1, car='Tesla Model Y', like = 0)
         u2 = Schemas(id = 2, car='NIO ET7', like = 0)
         u3 = Schemas(id = 3, car='Rivian R1S', like = 0)
@@ -93,10 +93,12 @@ def initSchemas():
 
         schemas = [u1, u2, u3, u4, u5]
 
+        """Builds sample user/note(s) data"""
         for schema in schemas:
             try:
+                
                 schema.create()
             except IntegrityError:
                 '''fails with bad or duplicate data'''
                 db.session.remove()
-                print(f"Records exist, duplicate email, or error: {schema.uid}")
+                print(f"Records exist, duplicate email, or error:")
