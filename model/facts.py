@@ -8,12 +8,13 @@ from sqlalchemy.exc import IntegrityError
 
 
 class Facts(db.Model):
-    __tableindustry__ = 'facts'  # table industry is plural, class industry is singular
+    __tablename__ = 'facts'  # table industry is plural, class industry is singular
 
     # Define the User schema with "vars" from object
     id = db.Column(db.Integer, primary_key=True)
     _car = db.Column(db.String(255), unique=False, nullable=False)
     _industry = db.Column(db.String(255), unique=False, nullable=False)
+    
     # Defines a relationship between User record and Notes table, one-to-many (one user to many notes)
     # constructor of a User object, initializes the instance variables within object (self)
     def __init__(self, car, industry):
@@ -38,7 +39,7 @@ class Facts(db.Model):
     
     # a setter function, allows industry to be updated after initial object creation
     @car.setter
-    def industry(self, car):
+    def car(self, car):
         self._car = car
 
     def __str__(self):
@@ -84,28 +85,26 @@ class Facts(db.Model):
 """CRUD DONE"""
 
 def initFacts():
+
+    """Builds sample user/note(s) data"""
     with app.app_context():
         """Create database and tables"""
-        db.init_app(app)
         db.create_all()
-        u1 = Facts( industry='Thomas Edison', car='Tesla Model y' )
-        u2 = Facts( industry='Nicholas Tesla', car='Pagani' )
-        u3 = Facts( industry='Alexander Graham Bell', car='Ferrari' )
-        u4 = Facts( industry='Eli Whitney', car='Lexus' )
-        u5 = Facts( industry='John Mortensen', car='NIO' )
+        """Tester data for table"""
+        u1 = Facts( industry='Thomas Edison', car='Tesla Model y', )
+        u2 = Facts( industry='Nicholas Tesla', car='Pagani', )
+        u3 = Facts( industry='Alexander Graham Bell', car='Ferrari', )
+        u4 = Facts( industry='Eli Whitney', car='Lexus', )
+        u5 = Facts( industry='John Mortensen', car='NIO', )
 
         facts = [u1, u2, u3, u4, u5]
 
+        """Builds sample user/note(s) data"""
         for fact in facts:
             try:
                 '''add a few 1 to 4 notes per user'''
-              
-                '''add user/post data to table'''
                 fact.create()
             except IntegrityError:
                 '''fails with bad or duplicate data'''
                 db.session.remove()
-                print(f"Records exist, duplicate email, or error: {fact.uid}")
-
-    """Builds sample user/note(s) data"""
-    
+                print(f"Records exist, duplicate email, or error:")

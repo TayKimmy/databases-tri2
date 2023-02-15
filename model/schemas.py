@@ -6,6 +6,7 @@ import json
 from __init__ import app, db
 from sqlalchemy.exc import IntegrityError
 
+
 class Schemas(db.Model):
     __tablename__ = 'schema'  # table name is plural, class name is singular
 
@@ -96,7 +97,6 @@ def initSchemas():
             try:
                 schema.create()
             except IntegrityError:
+                '''fails with bad or duplicate data'''
                 db.session.remove()
-                print(f"Records exist, duplicate email, or error: {schema.id}")
-
-    """Builds sample user/note(s) data"""
+                print(f"Records exist, duplicate email, or error: {schema.uid}")
