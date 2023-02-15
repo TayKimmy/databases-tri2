@@ -6,13 +6,12 @@ import json
 from __init__ import app, db
 from sqlalchemy.exc import IntegrityError
 
-
 class Schemas(db.Model):
     __tablename__ = 'schema'  # table name is plural, class name is singular
 
     # Define the User schema with "vars" from object
     id = db.Column(db.Integer, primary_key=True)
-    _car = db.Column(db.String(255), unique=False, nullable=False)
+    _car = db.Column(db.String(255), unique=True, nullable=False)
     _like = db.Column(db.Integer, unique=False, nullable=False)
     # Defines a relationship between User record and Notes table, one-to-many (one user to many notes)
     # constructor of a User object, initializes the instance variables within object (self)
@@ -82,11 +81,11 @@ def initSchemas():
         """Create database and tables"""
         db.create_all()
         """Tester data for table""" 
-        u1 = Schemas(car='Tesla Model Y', like = 0)
-        u2 = Schemas(car='NIO ET7', like = 0)
-        u3 = Schemas(car='Rivian R1S', like = 0)
-        u4 = Schemas(car='Lucid Air Grand Touring', like = 0)
-        u5 = Schemas(car='Tesla Roadster', like = 0)
+        u1 = Schemas( car='Tesla Model Y', like = 0, )
+        u2 = Schemas( car='NIO ET7', like = 0, )
+        u3 = Schemas( car='Rivian R1S', like = 0, )
+        u4 = Schemas( car='Lucid Air Grand Touring', like = 0, )
+        u5 = Schemas( car='Tesla Roadster', like = 0, )
 
         schemas = [u1, u2, u3, u4, u5]
 
