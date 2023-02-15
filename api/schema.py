@@ -23,14 +23,9 @@ class SchemasAPI:
             like = body.get('like')
             if like is None:
                 return {'message': f'Number of likes are missing, or is less than 2 characters'}, 210
-            id = body.get('id')
-            if id is None :
-                return {'message': f'User ID is missing, or is less than 2 characters'}, 210
-            # look for password and dob
-
+            
             ''' #1: Key code block, setup USER OBJECT '''
-            uo = Schemas(car=car,like=like, 
-                       id=id)
+            uo = Schemas(car=car,like=like)
             
             ''' Additional garbage error checking '''
             
@@ -41,7 +36,7 @@ class SchemasAPI:
             if schema:
                 return jsonify(schema.read())
             # failure returns error
-            return {'message': f'Processed {id}, either a format error or User ID is duplicate'}, 210
+            return {'message': f'Processed, either a format error or User ID is duplicate'}, 210
 
     class _Read(Resource):
         def get(self):

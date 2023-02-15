@@ -16,8 +16,7 @@ class Schemas(db.Model):
     _like = db.Column(db.Integer, unique=False, nullable=False)
     # Defines a relationship between User record and Notes table, one-to-many (one user to many notes)
     # constructor of a User object, initializes the instance variables within object (self)
-    def __init__(self, like, car, id):
-        self.id = id
+    def __init__(self, like, car):
         self._car = car
         self._like = like   
 
@@ -37,7 +36,7 @@ class Schemas(db.Model):
     # a setter function, allows name to be updated after initial object creation
     @car.setter
     def car(self, car):
-        self._name = car
+        self._car = car
 
     def __str__(self):
         return json.dumps(self.read())
@@ -85,11 +84,11 @@ def initSchemas():
         """Create database and tables"""
         db.create_all()
         """Tester data for table"""
-        u1 = Schemas(id = 1, car='Tesla Model Y', like = 0)
-        u2 = Schemas(id = 2, car='NIO ET7', like = 0)
-        u3 = Schemas(id = 3, car='Rivian R1S', like = 0)
-        u4 = Schemas(id = 4, car='Lucid Air Grand Touring', like = 0)
-        u5 = Schemas(id = 5, car='Tesla Roadster', like = 0)
+        u1 = Schemas(car='Tesla Model Y', like = 0)
+        u2 = Schemas(car='NIO ET7', like = 0)
+        u3 = Schemas(car='Rivian R1S', like = 0)
+        u4 = Schemas(car='Lucid Air Grand Touring', like = 0)
+        u5 = Schemas(car='Tesla Roadster', like = 0)
 
         schemas = [u1, u2, u3, u4, u5]
 
