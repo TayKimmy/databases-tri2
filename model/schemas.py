@@ -62,7 +62,7 @@ class Schemas(db.Model):
 
     # CRUD update: updates user name, password, phone
     # returns self
-    def update(self, car="", like=0):
+    def update(self, car=""):
         """only updates values with length"""
         if len(car) > 0:
             self.car = car
@@ -81,7 +81,7 @@ def initSchemas():
     with app.app_context():
         """Create database and tables"""
         db.create_all()
-        """Tester data for table"""
+        """Tester data for table""" 
         u1 = Schemas(car='Tesla Model Y', like = 0)
         u2 = Schemas(car='NIO ET7', like = 0)
         u3 = Schemas(car='Rivian R1S', like = 0)
