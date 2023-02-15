@@ -62,12 +62,10 @@ class Schemas(db.Model):
 
     # CRUD update: updates user name, password, phone
     # returns self
-    def update(self, car="", like="",):
+    def update(self, car="", like=0):
         """only updates values with length"""
         if len(car) > 0:
             self.car = car
-        if len(like) > 0:
-            self.like = like
         db.session.commit()
         return self
 
