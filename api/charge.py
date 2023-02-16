@@ -33,7 +33,7 @@ class ChargesAPI:
 
     class _Read(Resource):
         def get(self):
-            charges = charges.query.all()  
+            charges = Charges.query.all()  
             json_ready = [charge.read() for charge in charges]  
             return jsonify(json_ready)  
 
