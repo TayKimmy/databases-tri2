@@ -8,37 +8,29 @@ from sqlalchemy.exc import IntegrityError
 
 
 class Charges(db.Model):
-    __tablechargetime__ = 'Charges'  # table chargetime is plural, class chargetime is singular
+    __tablename__ = 'Charges' 
 
-    # Define the User schema with "vars" from object
     id = db.Column(db.Integer, primary_key=True)
     _car = db.Column(db.String(255), unique=False, nullable=False)
     _chargetime = db.Column(db.String(255), unique=False, nullable=False)
-    # Defines a relationship between User record and Notes table, one-to-many (one user to many notes)
-    # constructor of a User object, initializes the instance variables within object (self)
     def __init__(self, car, chargetime):
-
-        self._chargetime = chargetime   # variables with self prefix become part of the object, 
+        self._chargetime = chargetime   
         self._car = car
 
     @property
     def chargetime(self):
         return self._chargetime
     
-    # a setter function, allows chargetime to be updated after initial object creation
     @chargetime.setter
     def chargetime(self, chargetime):
         self._chargetime = chargetime
 
-    
-
     @property
     def car(self):
         return self._car
-    
-    # a setter function, allows chargetime to be updated after initial object creation
+
     @car.setter
-    def chargetime(self, car):
+    def car(self, car):
         self._car = car
 
     def __str__(self):
@@ -46,16 +38,13 @@ class Charges(db.Model):
 
     def create(self):
         try:
-            # creates a person object from User(db.Model) class, passes initializers
-            db.session.add(self)  # add prepares to persist person object to Users table
-            db.session.commit()  # SqlAlchemy "unit of work pattern" requires a manual commit
+            db.session.add(self)  
+            db.session.commit()
             return self
         except IntegrityError:
             db.session.remove()
             return None
 
-    # CRUD read converts self to dictionary
-    # returns dictionary
     def read(self):
         return {
             "id": self.id,
@@ -64,10 +53,7 @@ class Charges(db.Model):
             
         }
 
-    # CRUD update: updates user chargetime, knew, phone
-    # returns self
     def update(self, chargetime="", car=""):
-        """only updates values with length"""
         if len(chargetime) > 0:
             self.chargetime = chargetime
         if len(car) > 0:
@@ -75,18 +61,14 @@ class Charges(db.Model):
         db.session.commit()
         return self
 
-    # CRUD delete: remove self
-    # None
+
     def delete(self):
         db.session.delete(self)
         db.session.commit()
         return None
-"""CRUD DONE"""
 
 def initCharges():
     with app.app_context():
-        """Create database and tables"""
-        db.init_app(app)
         db.create_all()
         u1 = Charges( chargetime='Around 10 Hours', car='Lucid Air' )
         u2 = Charges( chargetime='Around 7 Hours', car='Tesla Model X' )
@@ -94,18 +76,13 @@ def initCharges():
         u4 = Charges( chargetime='Around 18 Hours', car='Rivian R1T' )
         u5 = Charges( chargetime='Around 11 Hours', car='NIO ET5' )
 
-        Charges = [u1, u2, u3, u4, u5]
+        charges = [u1, u2, u3, u4, u5]
 
-        for fact in Charges:
+        for charge in charges:
             try:
-                '''add a few 1 to 4 notes per user'''
-              
-                '''add user/post data to table'''
-                fact.create()
+                charge.create()
             except IntegrityError:
-                '''fails with bad or duplicate data'''
                 db.session.remove()
-                print(f"Records exist, duplicate email, or error: {fact.uid}")
+                print(f"Records exist, duplicate email, or error:")
 
-    """Builds sample user/note(s) data"""
     
