@@ -11,8 +11,8 @@ class Charges(db.Model):
     __tablename__ = 'Charges' 
 
     id = db.Column(db.Integer, primary_key=True)
-    _car = db.Column(db.String(255), unique=False, nullable=False)
-    _chargetime = db.Column(db.String(255), unique=False, nullable=False)
+    _car = db.Column(db.String(255), unique=True, nullable=False)
+    _chargetime = db.Column(db.String(255), unique=True, nullable=False)
     def __init__(self, car, chargetime):
         self._chargetime = chargetime   
         self._car = car
