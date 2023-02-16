@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 from flask_restful import Api, Resource # used for REST API building
 from datetime import datetime
 
-from model.charges import charges
+from model.charges import charge
 
 charge_api = Blueprint('charge_api', __name__,
                    url_prefix='/api/charges')
