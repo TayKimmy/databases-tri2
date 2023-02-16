@@ -6,7 +6,7 @@ leaderboard_list = [
     {"user": "Dillon", "Score": "400"},
     {"user": "Rohan", "Score": "300"},
     {"user": "Tay", "Score":  "200"},
-    {"user": "Adi", "Score": "100"},
+    {"user": "Adi", "Score": "110"},
 ]
 
 def initleaderboard():
