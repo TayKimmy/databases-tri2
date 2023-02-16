@@ -7,8 +7,8 @@ from __init__ import app, db
 from sqlalchemy.exc import IntegrityError
 
 
-class Facts(db.Model):
-    __tablechargetime__ = 'facts'  # table chargetime is plural, class chargetime is singular
+class Charges(db.Model):
+    __tablechargetime__ = 'Charges'  # table chargetime is plural, class chargetime is singular
 
     # Define the User schema with "vars" from object
     id = db.Column(db.Integer, primary_key=True)
@@ -83,20 +83,20 @@ class Facts(db.Model):
         return None
 """CRUD DONE"""
 
-def initFacts():
+def initCharges():
     with app.app_context():
         """Create database and tables"""
         db.init_app(app)
         db.create_all()
-        u1 = Facts( chargetime='Around 10 Hours', car='Lucid Air' )
-        u2 = Facts( chargetime='Around 7 Hours', car='Tesla Model X' )
-        u3 = Facts( chargetime='Around 7 Hours', car='Tesla Model S' )
-        u4 = Facts( chargetime='Around 18 Hours', car='Rivian R1T' )
-        u5 = Facts( chargetime='Around 11 Hours', car='NIO ET5' )
+        u1 = Charges( chargetime='Around 10 Hours', car='Lucid Air' )
+        u2 = Charges( chargetime='Around 7 Hours', car='Tesla Model X' )
+        u3 = Charges( chargetime='Around 7 Hours', car='Tesla Model S' )
+        u4 = Charges( chargetime='Around 18 Hours', car='Rivian R1T' )
+        u5 = Charges( chargetime='Around 11 Hours', car='NIO ET5' )
 
-        facts = [u1, u2, u3, u4, u5]
+        Charges = [u1, u2, u3, u4, u5]
 
-        for fact in facts:
+        for fact in Charges:
             try:
                 '''add a few 1 to 4 notes per user'''
               
