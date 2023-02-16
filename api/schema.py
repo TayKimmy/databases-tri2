@@ -44,27 +44,27 @@ class SchemasAPI:
             json_ready = [schema.read() for schema in schemas]  # prepare output in json
             return jsonify(json_ready)  # jsonify creates Flask response object, more specific to APIs than json.dumps
     
-    #class _Delete(Resource):
-     #   def delete(self):
-      #      body = request.get_json()
-       #     id = body.get('id')
-        #    uo = Schemas(id=id)
-         #   schema = uo.delete()
-          #  if schema:
-           #     return jsonify(schema.read())
+    class _Delete(Resource):
+        def delete(self):
+            body = request.get_json()
+            id = body.get('id')
+            uo = Schemas(id=id)
+            schema = uo.delete()
+            if schema:
+                return jsonify(schema.read())
     
-    #class _Update(Resource):
-     #   def patch(self):
-      #      body = request.get_json()
-       #     id = body.get('id')
-        #    like = body.get('like')
-         #   uo = Schemas(id=id, like=like)
-          #  schema = uo.update()
-           # if schema:
-            #    return jsonify(schema.read())
+    class _Update(Resource):
+        def patch(self):
+            body = request.get_json()
+            id = body.get('id')
+            like = body.get('like')
+            uo = Schemas(id=id, like=like)
+            schema = uo.update()
+            if schema:
+                return jsonify(schema.read())
 
     # building RESTapi endpoint
     api.add_resource(_Create, '/create')
     api.add_resource(_Read, '/')
-    #api.add_resource(_Delete, '/delete')
-    #api.add_resource(_Update, '/update')
+    api.add_resource(_Delete, '/delete')
+    api.add_resource(_Update, '/update')
