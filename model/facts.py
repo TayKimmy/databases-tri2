@@ -82,6 +82,7 @@ class Facts(db.Model):
         db.session.delete(self)
         db.session.commit()
         return None
+    
 """CRUD DONE"""
 
 def initFacts():
