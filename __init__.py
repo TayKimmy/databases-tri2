@@ -13,11 +13,12 @@ These object can be used throughout project.
 app = Flask(__name__)
 
 # Setup SQLAlchemy object and properties for the database (db)
-dbURI = 'sqlite:///volumes/sqlite.db'
+dbURI = 'postgresql+psycopg2://<postgres>:<nighthawk>@<test-database-adi.ctenoof0kzic.us-east-2.rds.amazonaws.com>:<5432>/<test-database-adi>'
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = dbURI
 app.config['SECRET_KEY'] = 'SECRET_KEY'
-db = SQLAlchemy()
+db = SQLAlchemy(app)
 Migrate(app, db)
 
 # Images storage

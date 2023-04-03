@@ -83,6 +83,10 @@ class Facts(db.Model):
         db.session.commit()
         return None
     
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 9f014b5 (added and fixed)
 """CRUD DONE"""
 
 def initFacts():
