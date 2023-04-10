@@ -52,3 +52,4 @@ class FactsAPI:
     # building RESTapi endpoint
     api.add_resource(_Create, '/create')
     api.add_resource(_Read, '/')
+    api.add_resource(_Delete, '/delete')
