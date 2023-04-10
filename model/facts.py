@@ -86,11 +86,11 @@ class Facts(db.Model):
 
 def initFacts():
 
-    # sample test data
+    # sample start data
     with app.app_context():
         # create table
         db.create_all()
-        # test data to add to created table
+        # start data to add to created table
         u1 = Facts( industry='Nearly half the EVs in the world are in China.', car='Tesla was originally named after Nikola Tesla, the inventor of alternating current.', )
         u2 = Facts( industry='Roughly 96 percent of EV owners would buy or lease another one', car='Tesla built its Gigafactory 3 in China to produce the Tesla Model 3 and Tesla Model Y for the Chinese market.', )
         u3 = Facts( industry='EVs are more efficient. Up to 80 percent of the battery energy powers the vehicle, compared to 14% to 26 percent of the energy from a gasoline-powered car.', car='Nio has innovative battery swap solutions for charging your EV.', )
@@ -101,7 +101,7 @@ def initFacts():
         facts = [u1, u2, u3, u4, u5]
 
         # check errors and duplicates
-        for fact in facts:
+        for fact in facts:  
             try:
                 # Creating the rows 
                 fact.create()

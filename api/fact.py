@@ -36,8 +36,8 @@ class FactsAPI:
 
     class _Read(Resource):
         def get(self):
-            facts = Facts.query.all() 
-            json_ready = [fact.read() for fact in facts]  
+            body = Facts.query.all() 
+            json_ready = [fact.read() for fact in body]  
             return jsonify(json_ready)  
         
     class _Delete(Resource):
@@ -48,8 +48,23 @@ class FactsAPI:
             fact.delete()
             if fact:
                 return jsonify(fact.read())
+    
+    class _Update(Resource):
+        def patch(self):
+            body = request.get_json()
+            id = body.get('id')
+            fact = Facts.query.filter_by(id=id).first()
+            try:
+                industry = body.get('industry')
+                car = body.get('car')
+                fact.update(car=car, industry=industry)
+                return jsonify(fact.read())
+            except:
+                print(f"error with {id}")
+
 
     # building RESTapi endpoint
     api.add_resource(_Create, '/create')
     api.add_resource(_Read, '/')
     api.add_resource(_Delete, '/delete')
+    api.add_resource(_Update, '/update')
