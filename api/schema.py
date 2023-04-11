@@ -15,8 +15,6 @@ class SchemasAPI:
         def post(self):
             ''' Read data for json body '''
             body = request.get_json()
-            
-            ''' Avoid garbage in, error checking '''
             car = body.get('car')
             if car is None or len(car) < 2:
                 return {'message': f'User ID is missing, or is less than 2 characters'}, 210
@@ -24,19 +22,15 @@ class SchemasAPI:
             if like is None:
                 return {'message': f'Number of likes are missing, or is less than 2 characters'}, 210
             
-            ''' #1: Key code block, setup USER OBJECT '''
-            uo = Schemas(car=car,like=like)
-            
-            ''' Additional garbage error checking '''
-            
-            ''' #2: Key Code block to add user to database '''
+            uo = Schemas(car=car, 
+                      like=like)
             # create user in database
             schema = uo.create()
             # success returns json of user
             if schema:
                 return jsonify(schema.read())
             # failure returns error
-            return {'message': f'Processed, either a format error or User ID is duplicate'}, 210
+            return {'message': f'Processed {car}, either a format error or User ID is duplicate'}, 210
 
     class _Read(Resource):
         def get(self):
@@ -44,6 +38,15 @@ class SchemasAPI:
             json_ready = [schema.read() for schema in schemas]  # prepare output in json
             return jsonify(json_ready)  # jsonify creates Flask response object, more specific to APIs than json.dumps
     
+    class _Delete(Resource):
+        def delete(self):
+            body = request.get_json()
+            id = body.get('id')
+            schema = Schemas.query.filter_by(id=id).first()
+            schema.delete()
+            if schema:
+                return jsonify(schema.read())
+            
     class _Update(Resource):
         def patch(self):
             body = request.get_json()
@@ -57,17 +60,8 @@ class SchemasAPI:
             except:
                 print(f"error with {id}")
 
-    class _Delete(Resource):
-        def delete(self):
-            body = request.get_json()
-            id = body.get('id')
-            schema = Schemas.query.filter_by(id=id).first()
-            schema.delete()
-            if schema:
-                return jsonify(schema.read())
-
     # building RESTapi endpoint
     api.add_resource(_Create, '/create')
     api.add_resource(_Read, '/')
-    api.add_resource(_Update, '/update')
     api.add_resource(_Delete, '/delete')
+    api.add_resource(_Update, '/update')

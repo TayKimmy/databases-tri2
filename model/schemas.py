@@ -74,7 +74,6 @@ class Schemas(db.Model):
         db.session.delete(self)
         db.session.commit()
         return None
-"""CRUD DONE"""
 
 def initSchemas():
     with app.app_context():
