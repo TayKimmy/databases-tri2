@@ -48,18 +48,21 @@ class SchemasAPI:
         def patch(self):
             body = request.get_json()
             id = body.get('id')
-            like = body.get('like')
-            uo = Schemas(id=id, like=like)
-            schema = uo.update()
-            if schema:
+            schema = Schemas.query.filter_by(id=id).first()
+            try:
+                car = body.get('car')
+                like = body.get('like')
+                schema.update(car=car, like=like)
                 return jsonify(schema.read())
+            except:
+                print(f"error with {id}")
 
     class _Delete(Resource):
         def delete(self):
             body = request.get_json()
             id = body.get('id')
-            uo = Schemas(id=id)
-            schema = uo.delete()
+            schema = Schemas.query.filter_by(id=id).first()
+            schema.delete()
             if schema:
                 return jsonify(schema.read())
 
