@@ -53,8 +53,9 @@ class SchemasAPI:
             id = body.get('id')
             schema = Schemas.query.filter_by(id=id).first()
             try:
+                car = body.get('car')
                 like = body.get('like')
-                schema.update(like=like)
+                schema.update(car=car, like=like)
                 return jsonify(schema.read())
             except:
                 print(f"error with {id}")
