@@ -9,7 +9,7 @@ schema_api = Blueprint('car_api', __name__,
 
 # API docs https://flask-restful.readthedocs.io/en/latest/api.html
 api = Api(schema_api)
-
+ 
 class SchemasAPI:        
     class _Create(Resource):
         def post(self):
