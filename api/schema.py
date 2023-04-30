@@ -12,22 +12,21 @@ api = Api(schema_api)
 class SchemasAPI:        
     class _Create(Resource):
         def post(self):
-            ''' Read data for json body '''
             body = request.get_json()
-            car = body.get('car')
-            if car is None or len(car) < 2:
-                return {'message': f'User ID is missing, or is less than 2 characters'}, 210
-            reviews = body.get('reviews')
-            if reviews is None:
-                return {'message': f'Number of reviewss are missing, or is less than 2 characters'}, 210
+            car1 = body.get('car')
+        #    if car is None or len(car) < 2:
+        #        return {'message': f'Car is missing, or is less than 2 characters'}, 210
+            reviews1 = body.get('reviews')
+        #    if reviews is None:
+        #        return {'message': f'Number of reviewss are missing, or is less than 2 characters'}, 210
             
-            uo = Schemas(car=car, 
-                      reviews=reviews)
+            uo = Schemas(car=car1, 
+                      reviews=reviews1)
             schema = uo.create()
             if schema:
                 return jsonify(schema.read())
             # failure returns error
-            return {'message': f'Processed {car}, either a format error or User ID is duplicate'}, 210
+            return {'message': f'Processed {car1}, {uo}'}, 210
 
     class _Read(Resource):
         def get(self):
