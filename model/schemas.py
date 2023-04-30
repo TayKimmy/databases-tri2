@@ -15,7 +15,7 @@ class Schemas(db.Model):
     
     def __init__(self, reviews, car):
         self._car = car
-        self._reviews = reviews   
+        self._reviews = reviews
 
     @property
     def car(self):
@@ -79,7 +79,7 @@ def initSchemas():
         u5 = Schemas( car='Tesla Roadster', reviews = "", )
 
         schemas = [u1, u2, u3, u4, u5]
-        
+
         for schema in schemas:
             try:                
                 schema.create()
