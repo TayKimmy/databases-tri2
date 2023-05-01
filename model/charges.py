@@ -11,8 +11,8 @@ class Charges(db.Model):
     __tablename__ = 'Charges' 
 
     id = db.Column(db.Integer, primary_key=True)
-    _car = db.Column(db.String(255), unique=False, nullable=False)
-    _chargetime = db.Column(db.String(255), unique=False, nullable=False)
+    _car = db.Column(db.String(255), unique=True, nullable=False)
+    _chargetime = db.Column(db.String(255), unique=True, nullable=False)
     def __init__(self, car, chargetime):
         self._chargetime = chargetime   
         self._car = car
@@ -36,6 +36,8 @@ class Charges(db.Model):
     def __str__(self):
         return json.dumps(self.read())
 
+# CREATE
+
     def create(self):
         try:
             db.session.add(self)  
@@ -45,6 +47,8 @@ class Charges(db.Model):
             db.session.remove()
             return None
 
+# READ
+
     def read(self):
         return {
             "id": self.id,
@@ -52,6 +56,8 @@ class Charges(db.Model):
             "car": self.car,
             
         }
+
+# UPDATE
 
     def update(self, chargetime="", car=""):
         if len(chargetime) > 0:
@@ -61,6 +67,7 @@ class Charges(db.Model):
         db.session.commit()
         return self
 
+# DELETE
 
     def delete(self):
         db.session.delete(self)
