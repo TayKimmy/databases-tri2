@@ -11,7 +11,7 @@ from model.rankings import initRankings
 from model.generaters import initfact
 from model.facts import initFacts
 from model.schemas import initSchemas
-from model.carbuilderapi import initcarbuilder
+from model.carquiz import initcarbuilder
 from model.leaderboards import initleaderboard
 from model.charges import initCharges
 
