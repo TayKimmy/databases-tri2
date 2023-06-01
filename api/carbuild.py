@@ -3,7 +3,7 @@ from flask_restful import Api, Resource # used for REST API building
 import requests  # used for testing 
 import random
 
-from model.carbuilderapi import *
+from model.carquiz import *
 
 build_api = Blueprint('build_api', __name__,
                    url_prefix='/api/build')
@@ -24,17 +24,17 @@ class BuildAPI:
         def post(self, price):
             pass
             
-    # getJokes()
+  
     class _Read(Resource):
         def get(self):
             return jsonify(getcarbuilder())
 
-    # getJoke(id)
+   
     class _ReadID(Resource):
         def get(self, id):
             return jsonify(getcarbuilder(id))
     
-    # getRandomJoke()
+    
     class _ReadCount(Resource):
         def get(self):
             count = countcarbuilder()

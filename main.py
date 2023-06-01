@@ -6,11 +6,14 @@ from flask import render_template  # import render_template from "public" flask 
 # import "packages" from "this" project
 from __init__ import app  # Definitions initialization
 from model.users import initUsers
-from model.rankings import initRankings
-from model.generaters import initfact
 from model.facts import initFacts
+<<<<<<< HEAD
 from model.schemas import initSchemas
+from model.carquiz import initcarbuilder
+=======
+#from model.schemas import initSchemas
 from model.carbuilderapi import initcarbuilder
+>>>>>>> 9957959a09b9260914cddd2430c0943ef38398d7
 from model.leaderboards import initleaderboard
 from model.charges import initCharges
 from model.stocks import initStocks
@@ -20,7 +23,7 @@ from api.user import user_api # Blueprint import api definition
 from api.ranking import ranking_api
 from api.generate import generate_api
 from api.fact import fact_api
-from api.schema import schema_api
+#from api.schema import schema_api
 from api.carbuild import build_api
 from api.leaderboard import leaderboard_api
 from api.charge import charge_api
@@ -35,14 +38,14 @@ app.register_blueprint(ranking_api)
 app.register_blueprint(generate_api)
 app.register_blueprint(leaderboard_api)
 app.register_blueprint(fact_api)
-app.register_blueprint(schema_api)
+#app.register_blueprint(schema_api)
 app.register_blueprint(build_api)
 app.register_blueprint(app_projects) # register app pages
 app.register_blueprint(charge_api)
 app.register_blueprint(stock_api)
 
 @app.errorhandler(404)  # catch for URL not found
-def page_not_found(e):
+def page_not_found():
     # note that we set the 404 status explicitly
     return render_template('404.html'), 404
 
@@ -58,7 +61,7 @@ def stub():
 def activate_job():
     
     initUsers()
-    initSchemas()
+    #initSchemas()
     initFacts()
     initleaderboard()
     initcarbuilder()
